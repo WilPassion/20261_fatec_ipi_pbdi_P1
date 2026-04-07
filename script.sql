@@ -4,7 +4,7 @@ CREATE TABLE titanic (
     survived INT,
     pclass INT,
     sex VARCHAR(10),
-    fare DECIMAL(10,2),
+    fare NUMERIC(10,2),
     embarked VARCHAR(1)
 );
 
