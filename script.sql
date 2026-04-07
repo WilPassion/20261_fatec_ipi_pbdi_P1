@@ -59,3 +59,27 @@ BEGIN
         RAISE NOTICE 'Total de mulheres sobreviventes é de: %', total;
     END IF;
 END $$;
+
+--Enunciado 4 - Tarifa versus embarque
+-- Enunciado 4 - Tarifa versus embarque
+DO $$
+DECLARE
+    cur_cherbourg_fare CURSOR FOR
+        SELECT passengerid
+        FROM titanic
+        WHERE fare > 50 AND embarked = 'C';
+    passageiro INT;
+    total INT := 0;
+BEGIN
+    OPEN cur_cherbourg_fare;
+
+    LOOP
+        FETCH cur_cherbourg_fare INTO passageiro;
+        EXIT WHEN NOT FOUND;
+        total := total + 1;
+    END LOOP;
+
+    CLOSE cur_cherbourg_fare;
+
+    RAISE NOTICE 'O total de passageiros que pagaram mais de 50 é de: %', total;
+END $$;
